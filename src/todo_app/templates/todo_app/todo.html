@@ -1,0 +1,19 @@
+<h1>THis is the todo index page!</h1>
+<ul>
+    {% for item in all_todo_items %}
+    <li>
+        {{ item.content }}
+        <form action="/todo/delete-todo/{{item.id}}/" method="post" style="display: inline;">
+            {% csrf_token %}
+            <input type="submit" value="Delete">
+        </form>
+        <br><br>
+    </li>
+    {% endfor %}
+</ul>
+
+<form action="/todo/add-todo/" method="POST">
+    {% csrf_token %}
+    <input type="text" name="content">
+    <input type="submit" value="Add">
+</form>
